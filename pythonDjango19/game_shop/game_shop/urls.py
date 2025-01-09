@@ -16,7 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from task1.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', entrance),
+    path('platform/', platform_func),
+    path('platform/games/', games_func),
+    path('platform/cart/', cart_func),
+    path('sign_up_by_django', sign_up_by_django),
 ]
