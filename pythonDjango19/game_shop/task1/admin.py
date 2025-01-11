@@ -17,3 +17,11 @@ class AdminGame(admin.ModelAdmin):
     list_filter = ('cost', 'size')
     search_fields = ('title',)
     list_per_page = 20
+
+
+@admin.register(News)
+class AdminNews(admin.ModelAdmin):
+    list_display = ('title', 'content', 'date')
+    list_filter = ('title', 'content', 'date')
+    search_fields = ('title', 'content', 'date')
+    list_per_page = 20

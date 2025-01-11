@@ -10,5 +10,29 @@
 {% endblock %}
 
 {% block main %}
-{{ block.super }}
+{% block content %}
+        <br>
+        <hr>
+        <ul>
+                {% for game in page_object %}
+                <li><h3>{{game.title}}***<i>{{game.description}}</i>***Стоимость: <mark>{{game.cost}}</mark></h3>
+                        <button>Купить</button></li>
+                {% endfor %}
+        </ul>
+        <hr>
+        <div class="pagination">
+                <h4>Страницы:</h4>
+                <ul>
+                        {% if page_object.has_previous %}
+                                <li><a href="?page=1"><<<</a></li>
+                                <li><a href="?page={{ page_object.previous_page_number }}">Предыдущая</a></li>
+                        {% endif %}
+                        <li>{{ page_object.number }}/{{ paginator.num_pages }}</li>
+                        {% if page_object.has_next %}
+                                <li><a href="?page={{ page_object.next_page_number }}">Следующая</a></li>
+                                 <li><a href="?page={{ paginator.num_pages }}">>>></a></li>
+                        {% endif %}
+                 </ul>
+        </div>
+{% endblock %}
 {% endblock %}

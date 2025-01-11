@@ -4,8 +4,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{title}}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'style_2.css'%}">
+     <link rel="stylesheet" type="text/css" href="{% static 'style_2.css'%}">
+
 </head>
 <body>
     <header>
@@ -16,15 +18,15 @@
     <nav>
         {% block menu %}
         <h2>
-            <br>
             <a href="/platform">Главная</a>
             <br>
             <a href="/platform/games">Магазин</a>
             <br>
             <a href="/platform/cart">Корзина</a>
+            <br>
+            <a href="/platform/news">Новости</a>
          </h2>
         {% endblock %}
-        <br>
     </nav>
     <main>
         {% block content %}

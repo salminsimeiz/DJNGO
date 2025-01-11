@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import ContactForm
 from .models import *
+from django.core.paginator import Paginator
 
 
 def platform_func(request):
@@ -18,11 +19,14 @@ def games_func(request):
     title = 'Игры'
     text = 'Игры'
     games = Game.objects.all()
+    paginator = Paginator(games, 3)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
 
     context = {
         'title': title,
         'text': text,
-        'games': games,
+        'page_object': page_object,
     }
     return render(request, 'first_task/games.html', context)
 
@@ -114,3 +118,11 @@ def entrance_by_django(request):
     else:
         form = ContactForm()
         return render(request, 'first_task/entrance_page.html', {'form': form})
+
+
+def news(request):
+    news_ = News.objects.all().order_by('-date')
+    paginator = Paginator(news_, 3)
+    page_number = request.GET.get('page')
+    page_object = paginator.get_page(page_number)
+    return render(request, 'first_task/news.html', {'page_object': page_object})

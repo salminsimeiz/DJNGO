@@ -1,0 +1,33 @@
+{% extends 'first_task/menu.html' %}
+{% block pagename %}<h1>Новости</h1>{% endblock %}
+{% block menu %}{{ block.super }}{% endblock %}
+{% block content %}
+    <hr>
+    <ul>
+        {% for obj in page_object %}
+            <li>
+                <h3>{{ obj.title }}</h3>
+                <i>{{ obj.content }}</i>
+                <small style="float: right; margin-right: 20px;">{{ obj.date }}</small>
+                <hr>
+            </li>
+        {% empty %}
+        <p>Нет постов.</p>
+
+        {% endfor %}
+    </ul>
+    <div class="pagination">
+        <h4>Страницы:</h4>
+        <ul>
+            {% if page_object.has_previous %}
+                <li><a href="?page=1"><<<</a></li>
+                <li><a href="?page={{ page_object.previous_page_number }}">Предыдущая</a></li>
+            {% endif %}
+            <li>{{ page_object.number }}/{{ paginator.num_pages }}</li>
+            {% if page_object.has_next %}
+                   <li><a href="?page={{ page_object.next_page_number }}">Следующая</a></li>
+                   <li><a href="?page={{ paginator.num_pages }}">>>></a></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endblock %}
